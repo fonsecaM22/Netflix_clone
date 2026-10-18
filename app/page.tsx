@@ -1,7 +1,10 @@
+
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import requests from "@/utils/requests";
 import Row from "@/components/Row";
+import LoadingScreen from "@/components/LoadingScreen";
+import ModalWrapper from "@/components/ModalWrapper";
 
 async function Home() {
   const [
@@ -24,28 +27,26 @@ async function Home() {
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
   ]);
 
-  console.log(netflixOriginals);
-
   return (
-    <div
-      className="relative h-screen netflix-gradient lg:h-[140vh]"
-    >
+    <div className="relative h-screen netflix-gradient lg:h-[140vh]">
+      <LoadingScreen />
       <Header />
 
       <main className="relative pb-24 lg:space-y-24">
         <Banner netflixOriginals={netflixOriginals.results} />
 
-        <section className="pl-4 lg:pl-10 md:space-y-10">
+        <section className="pl-4 md:space-y-10 lg:pl-10">
           <Row title="Trending Now" movies={trendingNow.results} />
           <Row title="Top Rated" movies={topRated.results} />
           <Row title="Action Movies" movies={actionMovies.results} />
           <Row title="Comedy Movies" movies={comedyMovies.results} />
-          {/* My List Row */}
           <Row title="Horror Movies" movies={horrorMovies.results} />
           <Row title="Romance Movies" movies={romanceMovies.results} />
           <Row title="Documentaries" movies={documentaries.results} />
         </section>
       </main>
+
+      <ModalWrapper />
     </div>
   );
 }

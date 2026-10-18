@@ -9,11 +9,18 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@heroicons/react": "^2.2.0",
+    "@mui/material": "^9.5.0",
+    "firebase": "^13.0.0",
+    "jotai": "^3.0.1",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "react-hook-form": "^7.90.0",
     "react-icons": "^5.7.0",
+    "react-is": "^18.3.1",
     "react-router-dom": "^7.18.4",
     "tailwind-scrollbar-hide": "^4.0.0"
   },
