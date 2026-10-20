@@ -6,9 +6,14 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
+import { useAtom } from "jotai";
+import { modalState, movieState } from "@/atoms/modalAtoms";
 
 function Banner({ netflixOriginals }: { netflixOriginals: Movie[] }) {
   const [movie, setMovie] = useState<Movie | null>(null);
+  
+const [showModal, setShowModal] = useAtom(modalState);
+const [currentMovie, setCurrentMovie] = useAtom(movieState);
 
   useEffect(() => {
     if (!netflixOriginals?.length) return;
@@ -46,7 +51,13 @@ function Banner({ netflixOriginals }: { netflixOriginals: Movie[] }) {
         <button type="button" className="bannerButton bg-white text-black">
           <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" /> Play
         </button>
-        <button type="button" className="bannerButton bg-[gray]/70">
+        <button type="button" className="bannerButton bg-[gray]/70"
+        onClick={() => {
+          if (!movie) return;
+            setCurrentMovie(movie)
+            setShowModal(true)
+          }}
+        >
           More Info{" "}
           <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />
         </button>
